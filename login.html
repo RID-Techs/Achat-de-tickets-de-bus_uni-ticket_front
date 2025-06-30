@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="./Assets/auth.css">
+</head>
+<body>
+
+  <header>
+    <div class="modal-holder">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Alerte !</h3>
+        </div>
+        <hr>
+        <div class="modal-body">
+          <p>Veuillez vous authentifier pour accéder à l'application.</p>
+        </div>
+        <div class="modal-footer">
+          <button id="close-modal-btn" onclick="document.querySelector('.modal-holder').style.display='none'">Fermer</button>
+        </div>
+      </div>
+    </div>
+    <div class="modal-holder_2">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Connexion réussie !</h3>
+        </div>
+        <hr>
+        <div class="modal-body_2">
+          <p>Bienvenue !</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+  <div class="container">
+    <div class="signup-wrapper">
+      <div class="signup-holder">
+      <h2 id="signup-title">Connexion</h2>
+    <div class="form-container">
+      <form method="POST" onsubmit="Login(event)">
+        <div class="form-group">
+          <label for="username">Numéro de Carte</label>
+          <input type="text" id="card-number" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Mot de passe</label>
+          <input type="password" id="password" name="password" required>
+          <p>Mot de passe oublié ? <a class="auth-link" href="#">Réinitialiser</a></p>
+        </div>
+        <div class="submit-btn-holder">
+          <button id="submit-btn" type="submit">Se Connecter</button>
+          <p id="login-prompt">Pas de compte ? <a class="auth-link" href="./register.html">S'inscrire</a></p>
+        </div>
+      </form>
+    </div>
+    </div>
+    </div>
+  </div>
+</body>
+
+<script>
+  const Login = async(event) => {
+    event.preventDefault();
+    const TextSectionModal = document.querySelector(".modal-body p");
+    const TextSectionModal_2 = document.querySelector(".modal-body_2 p");
+    const cardNumber = document.getElementById("card-number").value.trim();
+    const password = document.getElementById("password").value.trim();
+
+    const response = await fetch("http://localhost:3002/api/students/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      credentials: "include",
+      body: JSON.stringify({ numero_de_carte: cardNumber, mot_de_passe: password })
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      TextSectionModal_2.textContent = data.SuccessMsg;
+      document.querySelector('.modal-holder_2').style.display = 'flex';
+      setTimeout(() => {
+        document.querySelector('.modal-holder_2').style.display = 'none';
+        window.location.href = "./welcome.html";
+      }, 3000);
+    } else {
+      TextSectionModal.textContent = data.ErrorMsg;
+      document.querySelector('.modal-holder').style.display = 'flex';
+    }
+  }
+</script>
+</html>

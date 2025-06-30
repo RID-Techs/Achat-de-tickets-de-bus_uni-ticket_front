@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inscription</title>
+  <link rel="stylesheet" href="./Assets/auth.css">
+</head>
+<body>
+
+  <header>
+    <div class="modal-holder">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Alerte !</h3>
+        </div>
+        <hr>
+        <div class="modal-body">
+          <p>Veuillez vous inscrire pour accéder à l'application.</p>
+        </div>
+        <div class="modal-footer">
+          <button id="close-modal-btn" onclick="document.querySelector('.modal-holder').style.display='none'">Fermer</button>
+        </div>
+      </div>
+    </div>
+    <div class="modal-holder_2">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Inscription réussie !</h3>
+        </div>
+        <hr>
+        <div class="modal-body_2">
+          <p>Vous pouvez maintenant vous connecter.</p>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="container">
+    <div class="signup-wrapper">
+      <div class="signup-holder">
+      <h2 id="signup-title">Inscription</h2>
+    <div class="form-container">
+      <form method="POST" onsubmit="SignUp(event)">
+        <div class="form-group">
+          <label for="username">Numéro de Carte</label>
+          <input type="text" id="card-number" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Mot de passe</label>
+          <input type="password" id="password" name="password" required>
+        </div>
+        <div class="form-group">
+          <label for="user_role">Statut</label>
+          <input type="text" id="user_role" value="Etudiant" readonly>
+        </div>
+        <div class="submit-btn-holder">
+          <button id="submit-btn" type="submit">S'inscrire</button>
+          <p id="login-prompt">Déjà un compte ? <a class="auth-link" href="./login.html">Connectez-vous</a></p>
+        </div>
+      </form>
+    </div>
+    </div>
+    </div>
+  </div>
+</body>
+
+<script>
+  const SignUp = async(event) => {
+    event.preventDefault();
+    const TextSectionModal = document.querySelector(".modal-body p");
+    const TextSectionModal_2 = document.querySelector(".modal-body_2 p");
+    const cardNumber = document.getElementById("card-number").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const userRole = document.getElementById("user_role").value.trim();
+
+    const response = await fetch("http://localhost:3002/api/students/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      credentials: "include",
+      body: JSON.stringify({ numero_de_carte: cardNumber, email, password, user_role: userRole })
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      TextSectionModal_2.textContent = "Redirection vers la page de connexion...";
+      document.querySelector('.modal-holder_2').style.display = 'flex';
+      setTimeout(() => {
+        document.querySelector('.modal-holder_2').style.display = 'none';
+        window.location.href = "./login.html";
+      }, 3000);
+    } else {
+      TextSectionModal.textContent = data.ErrorMsg;
+      document.querySelector('.modal-holder').style.display = 'flex';
+    }
+  }
+</script>
+</html>

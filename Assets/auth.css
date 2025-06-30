@@ -1,0 +1,179 @@
+:root {
+  --primary-color: #124E78;
+  --secondary-color: #fff;
+  --text-color: #000;
+  --background-color: #f0f0c967;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  height: 100vh;
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.modal-holder, .modal-holder_2 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #0000008c;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(1.5rem, 2vw, 2rem);
+  font-weight: bold;
+}
+
+.modal-content {
+  background-color: #f0f0c9e7;
+  padding: 1em;
+  border-radius: 0.5em;
+  box-shadow: 0px 0px 10px #124e7870;
+}
+
+.modal-header h3 {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  text-align: center;
+}
+
+.modal-body p, .modal-body_2 p {
+  margin-top: 0.5em;
+  font-size: 1.2rem;
+  color: #000000de;
+  text-align: center;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+}
+
+#close-modal-btn {
+  outline: none;
+  border: 1px solid transparent;
+  margin-top: 0.7em;
+  padding: 0.3em;
+  border-radius: 0.5em;
+  font-size: 1rem;
+  color: var(--secondary-color);
+  background-color: var(--primary-color);
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  &:hover {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+  }
+}
+
+.container {
+  padding: 1em;
+}
+
+.signup-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.signup-holder {
+  border: 1px solid transparent;
+  padding: 2em;
+  border-radius: 0.5em;
+  box-shadow: 0px 0px 10px #636262;
+  background-color: #F0F0C9;
+}
+
+.form-container form{
+  margin-top: 2em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.form-group input {
+  outline: none;
+  border: 1px solid transparent;
+  padding: 0.5em;
+  border-radius: 0.5em;
+  font-size: 1.1rem;
+}
+
+#signup-title {
+  text-align: center;
+}
+
+.submit-btn-holder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#login-prompt {
+  text-align: center;
+  margin-top: 1em;
+}
+
+.auth-link {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+#submit-btn {
+  outline: none;
+  border: 1px solid transparent;
+  padding: 0.5em;
+  border-radius: 0.5em;
+  font-size: 1.1rem;
+  color: var(--secondary-color);
+  background-color: var(--text-color);
+  font-weight: bold;
+  cursor: pointer;
+  &:hover {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+  }
+  transition: background-color 0.3s ease, color 0.3s ease
+}
+
+
+@media screen and (min-width: 1024px) {
+  .modal-content {
+    width: calc(100% - 30em);
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .modal-content {
+    width: calc(100% - 11em);
+  }
+}
+@media screen and (max-width: 530px) {
+  .modal-content {
+    padding: 1em;
+  }
+}
