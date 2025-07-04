@@ -29,7 +29,7 @@ Une seule version fonctionne sur tous les systèmes (Windows, Mac, Android, iOS�
 Une web app peut facilement évoluer, ajouter des fonctionnalités, ou s’adapter à de nouveaux besoins sans contraintes majeures.
 
 # 🧰 🌴 Techonologies ultilisées
-Ici pour un prototype, nous avons juste utiliser le HTML5 classique, le "Pure" CSS pour le style. Cependant, nous envisageons utiliser la ***librairie React*** basée sur le **JavaScript**, mais avec en optant pour du ***React avec TypeScript***. Nous jugeons bon d'utiliser le **sucre syntaxique** de l'écosystème __JavaScript__ ***TypeScript*** 🧩💯 
+Ici pour un prototype, nous avons juste utiliser du HTML5 classique, du "Pure" CSS pour le style. Cependant, nous envisageons utiliser la ***librairie React*** basée sur le **JavaScript**, mais avec en optant pour du ***React avec TypeScript***. Nous jugeons bon d'utiliser le **sucre syntaxique** de l'écosystème __JavaScript__ ***TypeScript*** 🧩💯 
 pour une interface plus ***intéractive, dynamique et conviviale***.
 
 Ce choix est fait pour faciliter la **maintenance** et surtout rendre possible la **scalabilité** du projet à tout moment. Nous voyons la plateforme ***UniTicket*** pas comme un simple projet, mais une ***révolution technologique***, un ***game-changer*** qui
