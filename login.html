@@ -70,7 +70,8 @@
     const TextSectionModal_2 = document.querySelector(".modal-body_2 p");
     const cardNumber = document.getElementById("card-number").value.trim();
     const password = document.getElementById("password").value.trim();
-
+    
+  // Vu que c'est juste un projet MVP (Minimum Viable Product), un simple prototype, on n'a exposer le port et l'URL de l'API, et mettre un mot de passe en clair.
     const response = await fetch("http://localhost:3002/api/students/login", {
       method: "POST",
       headers: {
